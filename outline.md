@@ -28,13 +28,39 @@ So let's talk about the shape of the rest of this presentation.
 4. Explanation for how the NCC scripts work
 5. Challenges and opportunities
 
+### What is the Experience-Based Park Access Model?
+
+The Experience-Based Park Access Model is new way of essentially determining the level of service our system provides to our citizens at the Census Block and Block Group level. It focuses on parks that provide a core experience (walking/riding a bike, open play, playground, places to socialize) and how much of the population within 1.29 miles have access to those types of parks. All in all, it helps us see where our citizens are well served by the parks system and where there is room for improvement.
+
+This model also helps us understand where access improvements might be possible for improving level of service. I'll get to this in a moment, but essentially, it helps us see a range of options for improving level of service. Maybe we do need to acquire land, go through the master planning process, and construct a new park. But maybe there are some cases where improving sidewalk connectivity or adding a new entrance will open up a park to a significantly greater number of people in the area.
+
+Finally, we can use the model to think about where to add new amenities or where to acquire new land.
+
 ### Why an experience-based model?
 
-Raleigh is a city that loves its parks, so much so that it is sometimes described as "a city within a park". Massive population growth over the past 30+ years has meant the parks system has had to grow as well. Helping to inform where our department acquires and develops property has been a level of service measure from 1917 that states "The area of parks and other public grounds within the city apparently presents the most satisfactory basis for computing the relation of population to recreational areas." In short,level of service is the population per acre of park land.
+Raleigh is a city that loves its parks, so much so that it is sometimes described as "a city within a park". Massive population growth over the past 30+ years has meant the parks system has had to grow as well. Helping to inform where our department acquires and develops property has been a level of service measure from 1917 that states "The area of parks and other public grounds within the city apparently presents the most satisfactory basis for computing the relation of population to recreational areas." In short, level of service is the population per acre of park land.
 
 This measure has some shortcomings. First, it looks at the city as a whole and thus ignores the possibility that park amenities might be unevenly distributed. Second, it is a measure that is good for comparing level of service against other cities, but not for understanding level of service throughout our city. Our overall level of service compared to Charlotte, Wilmington, or Greensboro doesn't mean anything to the citizen whose taxes pay for our parks but is better served by Cary or Wake Forest.
 
-This sort of course grained model wasn't really cutting it. So the Experience Based Park Access Model was developed to help address some key issues:
+Now, we were able to ameliorate some of this by looking at population within a given distance of each park. But this also was insufficient because it involved drawing a uniform buffer around a park and calculating the population within the buffer. While this was better than just taking the city as a whole, the use of a uniform buffer only accounted for Euclidean, straight-line distance to the park; not the actual distance people have to travel along the road to the park.
+
+Furthermore, this measure of level of service looked at park properties as a homogenous entity. It doesn't really fit well with the way park land is acquired and developed. Undeveloped land presents a different experience than one with a playground, basketball court, etc. Certainly there is utility in knowing what assets we have an maintain. But that is a consideration of how our department interacts with the parks, not our citizens. If we are trying to get a hold of our level of service for our citizens, we need to account for where we are really providing service to our citizens. This previous model didn't really have the nuance we wanted.
+
+### Metrics
+
+So we came up with some values and metrics to use to get a better grasp of how we're serving our population.
+
+### PRCR approach
+
+This sort of course grained model wasn't really cutting it. So a different way of approaching level of service was developed. Having GIS technology and a good store of data about our parks meant that we could carry out a more nuanced analysis of our system.
+
+In particular, we wanted a model that was more than a snapshot of assets, and rather a consideration of our citizens' experience of our parks system. Certainly there is utility in knowing what land we have, but a median that is technically ours needs to be considered differently from a park with a playground and basketball hoops. So as we've developed this model, we've taken special care to focus on those properties that provide or have the potential to provide a core experience (open play, walking/riding a bike, sitting, playground).
+
+We also wanted to consider park accessibility. Not all parks are equally accessible by all residents. So we broke down the city into Census Blocks and consider how many people live within 1.29 miles of a given park - I'll talk about where that number came from momentarily.
+
+
+
+the Experience Based Park Access Model was developed to help address some key issues:
 
 - Need to generate performance measures related to level of service
 - Help target improvements to existing parks and greenways
@@ -42,6 +68,10 @@ This sort of course grained model wasn't really cutting it. So the Experience Ba
 - Identify areas for land acquisition
 
 ### Goals
+
+#### Work out the numbers
+
+Maps, charts, and lists carry with them visual authority. However the decisions that go into the data generating the these sorts of data visualizations are products of the people generating the data. While striving for an objective measure of access is our goal, we have made decisions along the way about what we measure and how, what we don't measure, and how to combine all these measures together to get to a seemingly definitive single value for each Census Block that represents park accessibility. A lot of work has gone into what factors we measure so that a variety of concerns about access are accounted for in the model. However, we have a had some difficulty figuring out how to combine the values for each factor into a single accessibility score. Right now we are using ranking each block for each factor, adding those together, an re-ranking based on the sum. While this does give us a common value to compare census blocks across factors we can't tell by how much each block varies from the other. In other words, we can figure out what the top three census blocks for circuitry are, but once we rank them, we lose any sense of how those scores are dispersed. We only know that 1st is better than 2nd is better than 3rd. One of our challenges is to normalize the score for our factors so that when they are combined, we can measure not only which block has the best access, but also by how much.  
 
 #### Make the EBPA accessible
 
