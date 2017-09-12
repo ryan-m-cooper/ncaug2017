@@ -46,26 +46,54 @@ Now, we were able to ameliorate some of this by looking at population within a g
 
 Furthermore, this measure of level of service looked at park properties as a homogenous entity. It doesn't really fit well with the way park land is acquired and developed. Undeveloped land presents a different experience than one with a playground, basketball court, etc. Certainly there is utility in knowing what assets we have an maintain. But that is a consideration of how our department interacts with the parks, not our citizens. If we are trying to get a hold of our level of service for our citizens, we need to account for where we are really providing service to our citizens. This previous model didn't really have the nuance we wanted.
 
+### Model the system
+
+In order to create this new model, we needed to figure out how we were going to model our system. Our goal is to understand the degree to which residents have access to core park experiences. To model the our residents, the population of Raleigh, we use the centroids of each Census Block within our jurisdictional boundaries. To help measure access, we use our street network. Finally, to represent parks, we use park access points. These three pieces of data, census block centroids, transportation, network, and park access points comprise the foundation of the EBPA model. There are also values pulled from our parks polygon data, but the these three are the core.
+
+We also had to define "accessible". We defined accessible as 1.29 mile network distance. This was the mean network distance for from each centroid to the nearest parkas of 2013. We use the park system from that year because it provides a baseline snapshot of the system at a time when we had carried out a community survey that indicated that 77% of residents were satisfied with the overall value the park system granted their household.
+
 ### Metrics
 
 So we came up with some values and metrics to use to get a better grasp of how we're serving our population.
 
-### PRCR approach
+Recall that we were unhappy with acres of park land per person. We haven't totally done away with that, but we've adjusted the measure and supplemented it with other metrics.
+- Distance to nearest park: What's the network distance to the nearest park?
+- Accessible Acres Per Person: For each Census Block, how many acres of park within a 1.29 mile network distance per person?
+- Accessible Parks per Person: For each each Census Block, how many parks are within a 1.29 mile network distance per person?
 
-This sort of course grained model wasn't really cutting it. So a different way of approaching level of service was developed. Having GIS technology and a good store of data about our parks meant that we could carry out a more nuanced analysis of our system.
+### EBPA model
 
-In particular, we wanted a model that was more than a snapshot of assets, and rather a consideration of our citizens' experience of our parks system. Certainly there is utility in knowing what land we have, but a median that is technically ours needs to be considered differently from a park with a playground and basketball hoops. So as we've developed this model, we've taken special care to focus on those properties that provide or have the potential to provide a core experience (open play, walking/riding a bike, sitting, playground).
+The EBPA model processes some specific datasets through a few tools. I'm not going to do a live demo because this does take several minutes to run and I don't want it to turn into live troubleshooting.
 
-We also wanted to consider park accessibility. Not all parks are equally accessible by all residents. So we broke down the city into Census Blocks and consider how many people live within 1.29 miles of a given park - I'll talk about where that number came from momentarily.
+Datasets:
+- Census Block Centroids
+- Transportation network dataset
+- Park access points
+Tools:
+- Network Distance to Parks ModelBuilder Tool
+- Stats scripts
 
+Create transportation network dataset if we haven't already.
 
+Calculate distance to nearest park and parks within 1.29 miles with Network Distance to Parks tool.
 
-the Experience Based Park Access Model was developed to help address some key issues:
+Calculate for each the metrics for each census block, rank them, and sum their ranks to get our level of service values for each census block.
 
-- Need to generate performance measures related to level of service
-- Help target improvements to existing parks and greenways
-- Help determine where to add new parks or develop existing park land
-- Identify areas for land acquisition
+So the final output of the model is a sum of ranks. I'll speak more about this at the end. But from this output we are able to glean an understanding of the level of service for each Census Block based on the ranks of our three metrics.
+
+We also have a variant for land acquistion. The key difference here is that we include access points for park properties that are undeveloped but have the potential for a core experience. It allows us to model where there are still poorly served areas even if we develop all of our park land.
+
+### Neighborhood and Community Connections
+
+Where the Level of Service tools for our model give us an idea of how our system is performing and how land acquisition or park property development could be used to improve access, Neighborhood and Community Connections drills deeper into the potential for targeted capital improvement projects to improve access to our existing parks. To do this we use measures of network circuitry, pedestrian experience, and citizen vulnerability to help understand where these access improvements can have the greatest impact.
+
+Like many US cities, the shape of Raleigh's growth has been car-oriented, suburban sprawl. This development pattern is typified by cul-de-sacs, intermittent sidewalk system, and disjointed, large-scale development. This development is built for cars, not people and presents real problems for people trying to get to their nearby parks. When we consider Peach Road park in Raleigh, there are people who live directly next to the park who must travel out of their neighborhood and onto a busy road with few pedestrian considerations. Their Euclidean distance is wonderful, but their network access is dreadful. What the Neighborhood and Community Connections tools seek to do is identify parks whose level of service is hampered by poor transportation network connectivity and simulate the degree to which new access points would increase Level of Service for that park.
+
+But remember, we are not just concerned about accessibility. We are also concerened about the experience. We work from a belief that parks should be accessible to all our residents. Driving a car should not be required to participate in the use of our parks.
+
+This toolset is a slight departure from EBPA because we are turning the focus onto the accessibility of each individual park rather than focusing on the overall accessibility of the park system for each Census Block. However, we are generally working with the same data.
+
+For the Neighborhood and Community Connections analysis we employ a
 
 ### Goals
 
