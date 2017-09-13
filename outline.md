@@ -14,10 +14,17 @@ than just land acquisition or new park development.
 
 ### Introduction
 
-My name is Ryan Cooper and I'm a Senior Systems Analyst/Programmer with the City of Raleigh Parks, Recreation and Cultural Resources Department. I'm here to speak to you all today about some of the ongoing work our department is doing to try and improve park access to the citizens of Raleigh. Specifically, I'll be talking about how we are using GIS to gain a clearer understanding of the over all level of service of our park system, where there are localized opportunities to improve access, and what those form that improvement might take.
+*Slide 1*
+
+My name is Ryan Cooper and I'm a Senior Systems Analyst/Programmer with the City of Raleigh Parks, Recreation and Cultural Resources Department.
+
+*Slide 2*
+
+We do a lot at parks, but today I'm here to speak about the work we've been doing around this one question: **How well does Raleigh's park system serve its population?**  Specifically, I'll be talking about how we've used GIS to build a set of tools for what we call the Experience-Based Park Access model to gian a clearer understanding of the over all level of service of our park system, where there are localized opportunities to improve access, and what those form that improvement might take.
 
 If you were at the state GIS conference in February, you might already be a little familiar with some of what I'm presenting. What I'll be talking about builds upon the Experience Based Park Access Model that emerged as the winner of the Herb Stout Award at that conference. Although our department is proud of that award I bring it up so that I may point out that much of what I'm presenting today is a result of a lot of teamwork and vision from people across our department, much of work predates my involvement with this work. I'd be remiss if I didn't acknowledge Rob Siwiec who is responsible for the lion's share of the code and logic behind our analysis. He has moved on to Wake County Public Schools, but his fingerprints are all over this project and he deserves a lot of credit for the work I'm presenting. Many thanks to Rob.
 
+*Slide 3*
 ### What are we going to talk about?
 
 So let's talk about the shape of the rest of this presentation.
@@ -28,23 +35,29 @@ So let's talk about the shape of the rest of this presentation.
 4. Explanation for how the NCC scripts work
 5. Challenges and opportunities
 
+*Slide 4*
+
+### Why an experience-based model?
+
+So how have we traditionally tried to measure the degree to which we've been suceeding at serving the public? How have we measured level of service?
+
+In fact our measure of level of service has been based on the recommendations of a 1917 document published by the Department of Commerce. At that time the opined that "The area of parks and other public grounds within the city apparently presents the most satisfactory basis for computing the relation of population to recreational areas." In short, level of service is the population per acre of park land.
+
+This measure has some shortcomings. First, it looks at the city as a whole and thus ignores the possibility that park amenities might be unevenly distributed. Second, it is a measure that is good for comparing level of service against other cities, but not for understanding level of service throughout our city. Our overall level of service compared to Charlotte, Wilmington, or Greensboro doesn't mean anything to the citizen whose taxes pay for our parks but is better served by Cary or Wake Forest.
+
+Furthermore, this measure of level of service looked at park properties as a homogenous entity. It doesn't really fit well with the way park land is acquired and developed. Undeveloped land presents a different experience than one with a playground, basketball court, etc. Certainly there is utility in knowing what assets we have an maintain. But that is a consideration of how our department interacts with the parks, not our citizens. If we are trying to get a hold of our level of service for our citizens, we need to account for where we are really providing service to our citizens. This previous model didn't really have the nuance we wanted.
+
+Leading up to the development of the Experience-Based Park Access Model, there was already some work being done to look at the areas served by certain amenities. It used network service areas to describe what areas were served by various amenities. However, it didn't really look at the population served by the amenities.
+
 ### What is the Experience-Based Park Access Model?
+
+In our department we have this guiding principle, "Bringing people to parks and parks to people." And beyond the shortcomings of the how we were measuring level of service I mentioned before, the analysis didn't really reflect this ethos of accessibility, "Bringing people to parks" and providing experiences, "parks to people." What we needed was a level of service measure to evaluate how well we're serving our population and that also could generate some insights on how to better practice this ethos.
 
 The Experience-Based Park Access Model is new way of essentially determining the level of service our system provides to our citizens at the Census Block and Block Group level. It focuses on parks that provide a core experience (walking/riding a bike, open play, playground, places to socialize) and how much of the population within 1.29 miles have access to those types of parks. All in all, it helps us see where our citizens are well served by the parks system and where there is room for improvement.
 
 This model also helps us understand where access improvements might be possible for improving level of service. I'll get to this in a moment, but essentially, it helps us see a range of options for improving level of service. Maybe we do need to acquire land, go through the master planning process, and construct a new park. But maybe there are some cases where improving sidewalk connectivity or adding a new entrance will open up a park to a significantly greater number of people in the area.
 
 Finally, we can use the model to think about where to add new amenities or where to acquire new land.
-
-### Why an experience-based model?
-
-Raleigh is a city that loves its parks, so much so that it is sometimes described as "a city within a park". Massive population growth over the past 30+ years has meant the parks system has had to grow as well. Helping to inform where our department acquires and develops property has been a level of service measure from 1917 that states "The area of parks and other public grounds within the city apparently presents the most satisfactory basis for computing the relation of population to recreational areas." In short, level of service is the population per acre of park land.
-
-This measure has some shortcomings. First, it looks at the city as a whole and thus ignores the possibility that park amenities might be unevenly distributed. Second, it is a measure that is good for comparing level of service against other cities, but not for understanding level of service throughout our city. Our overall level of service compared to Charlotte, Wilmington, or Greensboro doesn't mean anything to the citizen whose taxes pay for our parks but is better served by Cary or Wake Forest.
-
-Now, we were able to ameliorate some of this by looking at population within a given distance of each park. But this also was insufficient because it involved drawing a uniform buffer around a park and calculating the population within the buffer. While this was better than just taking the city as a whole, the use of a uniform buffer only accounted for Euclidean, straight-line distance to the park; not the actual distance people have to travel along the road to the park.
-
-Furthermore, this measure of level of service looked at park properties as a homogenous entity. It doesn't really fit well with the way park land is acquired and developed. Undeveloped land presents a different experience than one with a playground, basketball court, etc. Certainly there is utility in knowing what assets we have an maintain. But that is a consideration of how our department interacts with the parks, not our citizens. If we are trying to get a hold of our level of service for our citizens, we need to account for where we are really providing service to our citizens. This previous model didn't really have the nuance we wanted.
 
 ### Model the system
 
