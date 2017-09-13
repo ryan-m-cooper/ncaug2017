@@ -17,7 +17,7 @@
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="EBPA_STARTER_Parks20170913115108947" source="C:\Users\cooperr\Documents\Projects\EBPA DOCUMENTATION PRO PROJECTS\EBPA_Analysis\STARTER_KIT\EBPA_STARTER.gdb|layerid=4" name="EBPA_STARTER Parks">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="wms" checked="Qt::Checked" id="Toner__Hybrid_20170913121658714" source="type=xyz&amp;url=https://stamen-tiles-a.a.ssl.fastly.net/toner-hybrid/%7Bz%7D/%7Bx%7D/%7By%7D.png" name="Toner (Hybrid)">
+    <layer-tree-layer expanded="1" providerKey="wms" checked="Qt::Unchecked" id="Toner__Hybrid_20170913121658714" source="type=xyz&amp;url=https://stamen-tiles-a.a.ssl.fastly.net/toner-hybrid/%7Bz%7D/%7Bx%7D/%7By%7D.png" name="Toner (Hybrid)">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="EBPA_STARTER_STREET_ND20170913115108884" source="C:\Users\cooperr\Documents\Projects\EBPA DOCUMENTATION PRO PROJECTS\EBPA_Analysis\STARTER_KIT\EBPA_STARTER.gdb" name="EBPA_STARTER STREET_ND">
@@ -98,9 +98,9 @@
         <legendlayerfile isInOverview="0" layerid="EBPA_STARTER_Parks20170913115108947" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="Toner (Hybrid)" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="Toner (Hybrid)" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="Toner__Hybrid_20170913121658714" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="Toner__Hybrid_20170913121658714" visible="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="EBPA_STARTER STREET_ND" showFeatureCount="0">
@@ -1228,7 +1228,7 @@
       <labeling type="simple"/>
       <customproperties/>
       <blendMode>0</blendMode>
-      <featureBlendMode>0</featureBlendMode>
+      <featureBlendMode>4</featureBlendMode>
       <layerTransparency>0</layerTransparency>
       <displayfield>CARTONAME</displayfield>
       <label>0</label>
